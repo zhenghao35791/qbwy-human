@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.png">
+    <script type="text/javascript" src="<%= BASE_URL %>config.js"></script>
+    <title>qbwy</title>
+  </head>
+  <body>
+    <noscript>
+      <strong>用户浏览器不支持javascript，请使用chrome浏览器</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="application/javascript">
+    // 读取配置文件中ip和param配置
+    let VUE_APP_Ip = window.g.VUE_APP_Ip
+    let VUE_APP_Params = window.g.VUE_APP_Params
+    function setCookie(key,val,time){//设置cookie方法
+      let date=new Date(); //获取当前时间
+      let expiresDays=time;  //将date设置为n天以后的时间
+      date.setTime(date.getTime()+expiresDays*24*3600*1000); //格式化为cookie识别的时间
+      document.cookie=key + "=" + val +";expires="+date.toGMTString();  //设置cookie
+    }
+    setCookie('VUE_APP_Ip', VUE_APP_Ip, 24)
+    setCookie('VUE_APP_Params', VUE_APP_Params, 24)
+  </script>
+</html>
