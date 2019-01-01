@@ -6,32 +6,28 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'index',
-      redirect: '/integrity/inte-resource',
-      component: views.Overview,
-      children: [
-        {
-          path: '/integrity/inte-resource',
-          name: 'inteResource',
-          component: views.InteResource
-        }
-      ]
+      path: '/human-info',
+      name: 'humanInfo',
+      component: views.HumanInfo
     },
     {
       path: '/miss-omc-detail/:dataType/:time/:region/:isOffLine',
       name: 'missOmcDetail',
-      component: views.MissOmcDetail
+      component: views.HumanInfo
     },
     {
-      path: '/miss-net-detail/:dataType/:time/:region/:isOffLine',
-      name: 'missNetDetail',
-      component: views.MissNetDetail
+      path: '/data',
+      name: 'humanInfo',
+      component: views.HumanInfo
     },
     {
-      path: '/dm',
-      name: 'dmFrame',
-      component: views.Frame
+      path: '/page404',
+      name: 'page404',
+      component: views.Page404
+    },
+    {
+      path: '*',
+      redirect: '/page404'
     }
   ]
 })

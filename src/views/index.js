@@ -1,7 +1,9 @@
-import IntePerform from './integrity/IntePerform.vue'
-import Frame from './frame/frame.vue'
+import HumanInfo from './human/HumanInfo.vue'
+import Frame from './frame/Frame.vue'
+import Page404 from './page404/Page404.vue'
 
 export default {
-  IntePerform,
-  Frame
+  HumanInfo,
+  Frame,
+  Page404
 }

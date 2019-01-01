@@ -1,4 +1,4 @@
-import * as dataReport from './dataReport'
+import * as dataReport from './DataReport'
 
 export default {
   dataReport

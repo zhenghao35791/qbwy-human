@@ -1,17 +1,9 @@
-<template>
-  <h2>ddddd</h2>
-</template>
-
-<script>
-// import api from '@/api'
-
-export default {
+const mixin = {
   data () {
     return {
+      loading: false,
+      mixinList: []
     }
-  },
-  computed: {},
-  components: {
   },
   methods: {
     successMsg (msg) {
@@ -29,10 +21,13 @@ export default {
       })
     }
   },
-  mounted () {
+
+  created () {
+    // 这个生命周期是在使用组件的生命周期之前
+    this.$nextTick().then(() => {
+      // todo
+    })
   }
 }
-</script>
 
-<style lang="scss">
-</style>
+export default mixin
