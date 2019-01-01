@@ -17,24 +17,24 @@
           <span class="iap-submenu-title">人事平台</span>
         </el-menu-item>
       </div>
-      <!-- <el-menu-item index="/e/table_apply:personal">数据</el-menu-item> -->
       <el-submenu
         v-if="path"
-        index="data">
-        <template slot="title">数据</template>
+        index="2">
+        <template slot="title">人事档案</template>
         <el-row>
-          <el-col :span="12">
-            <el-menu-item index="/e/data_table">
-              表
+          <el-col :span="8">
+            <p class="iap-submenu-header">合同信息</p>
+            <el-menu-item index="/human-info">
+              员工信息
+            </el-menu-item>
+            <el-menu-item index="/page404">
+              员工合同
             </el-menu-item>
             <br>
-          </el-col>
-
-          <el-col :span="12">
-            <el-menu-item index="/e/data_api">
-              API
-              <HeaderHot :is-header='headerStatus'/>
-            </el-menu-item>
+            <p class="iap-submenu-header">员工设置</p>
+            <el-menu-item index="/middleWare/redis">员工分组</el-menu-item>
+            <el-menu-item index="/middleWare/zookeeper">员工标签</el-menu-item>
+            <el-menu-item index="/middleWare/springCloud">共享记录</el-menu-item>
             <br>
           </el-col>
         </el-row>
