@@ -2,7 +2,7 @@
   <div
     id="app"
     v-loading="isLoading">
-    <opHeader />
+    <humanHeader />
     <div style="min-height:60px;"/>
     <transition :name="transitionName">
       <router-view/>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import opHeader from '@/components/opHeader/Header.vue'
+import humanHeader from '@/components/humanHeader/Header.vue'
 import { createNamespacedHelpers } from 'vuex'
 const { mapGetters } = createNamespacedHelpers('system')
 
@@ -33,7 +33,7 @@ export default {
     ])
   },
   components: {
-    opHeader
+    humanHeader
   }
 }
 </script>

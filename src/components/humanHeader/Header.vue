@@ -18,7 +18,6 @@
         </el-menu-item>
       </div>
       <el-submenu
-        v-if="path"
         index="2">
         <template slot="title">人事档案</template>
         <el-row>
@@ -40,15 +39,12 @@
         </el-row>
       </el-submenu>
       <el-menu-item
-        v-if="path"
-        index="/results_app">应用成果</el-menu-item>
+        index="/results_app">服务报案</el-menu-item>
       <el-menu-item
-        v-if="path"
         index="/activity_project">
         活动专题
       </el-menu-item>
       <el-menu-item
-        v-if="path"
         index="/e/doc_center">文档中心</el-menu-item>
       <HeaderControl/>
     </el-menu>
@@ -56,7 +52,7 @@
 </template>
 
 <script>
-import HeaderControl from '@/components/opHeader/HeaderControl'
+import HeaderControl from '@/components/humanHeader/HeaderControl'
 
 export default {
   name: 'Header',
@@ -65,10 +61,8 @@ export default {
   },
   data () {
     return {
-      path: true,
       activeIndex: '0',
-      router: true,
-      headerStatus: false
+      router: true
     }
   },
   watch: {
@@ -76,16 +70,9 @@ export default {
       if (this.activeIndex !== to.path) {
         this.activeIndex = to.path
       }
-      if (to.path.indexOf('register') !== -1) {
-        this.path = false
-      } else {
-        this.path = true
-      }
     }
   },
   methods: {
-    handleSelect (key, keyPath) {
-    }
   }
 }
 </script>

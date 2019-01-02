@@ -1,5 +1,5 @@
-import * as dataReport from './DataReport'
+import * as humanInfoApi from './HumanInfoApi'
 
 export default {
-  dataReport
+  humanInfoApi
 }

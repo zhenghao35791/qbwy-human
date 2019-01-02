@@ -51,7 +51,7 @@
           </el-form-item>
           <el-form-item
             label="入职日期"
-            required>
+          >
             <el-col :span="11">
               <el-form-item prop="entryDate1">
                 <el-date-picker
@@ -63,7 +63,7 @@
             </el-col>
             <el-col
               class="line"
-              :span="2">-</el-col>
+              :span="1">-</el-col>
             <el-col :span="11">
               <el-form-item prop="entryDate2">
                 <el-date-picker

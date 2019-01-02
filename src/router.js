@@ -6,6 +6,12 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/',
+      redirect: '/human-info',
+      name: 'index',
+      component: views.HumanInfo
+    },
+    {
       path: '/human-info',
       name: 'humanInfo',
       component: views.HumanInfo
@@ -13,11 +19,6 @@ export default new Router({
     {
       path: '/miss-omc-detail/:dataType/:time/:region/:isOffLine',
       name: 'missOmcDetail',
-      component: views.HumanInfo
-    },
-    {
-      path: '/data',
-      name: 'humanInfo',
       component: views.HumanInfo
     },
     {

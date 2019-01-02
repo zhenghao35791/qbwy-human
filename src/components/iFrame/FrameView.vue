@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'Hello',
+  name: 'Frame',
   props: {
     name: {
       type: String,
