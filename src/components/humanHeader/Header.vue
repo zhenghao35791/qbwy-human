@@ -11,10 +11,10 @@
       <div style="float: left">
         <el-menu-item index="/home">
           <img
-            src="./u6.png"
+            src="@/assets/index-logo-small.png"
             alt=""
             class="iap-header-logo">
-          <span class="iap-submenu-title">人事平台</span>
+            <!--<span class="iap-submenu-title">人事平台</span>-->
         </el-menu-item>
       </div>
       <el-submenu
@@ -93,9 +93,7 @@ export default {
     z-index: 1000;
     width: 100%;
     .iap-header-logo {
-      width: 28px;
-      height: 28px;
-      margin: 0 15px;
+      margin: -5px 15px 0 15px;
     }
     .iap-submenu-title {
       padding-right: 50px;
