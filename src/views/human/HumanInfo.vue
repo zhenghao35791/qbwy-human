@@ -102,7 +102,7 @@
         </el-form>
         <div class="human-info-table-wrapper">
           <el-table
-            :data="tableData5"
+            :data="humanTableData"
             stripe
             style="width: 100%"
             @selection-change="handleSelectionChange">
@@ -121,7 +121,7 @@
                   <el-form-item label="实名认证">
                     <span>{{ props.row.realname }}</span>
                   </el-form-item>
-                  <el-form-item label="民族/籍贯">
+                  <el-form-item label="民族籍贯">
                     <span>{{ props.row.nation }}</span>
                   </el-form-item>
                   <el-form-item label="银行卡号">
@@ -216,7 +216,9 @@
                   size="small">资料</el-button>
                 <el-button
                   type="text"
-                  size="small">合同</el-button>
+                  size="small"
+                  @click="dialogContractTableVisible = true"
+                >合同</el-button>
                 <el-button
                   type="text"
                   size="small">评语</el-button>
@@ -282,7 +284,6 @@
           type="primary"
           size="small"
           icon="el-icon-circle-plus"
-          style="float: right"
           @click="onSubmit">添加模板</el-button>
         <div class="human-info-table-wrapper">
           <el-table
@@ -341,6 +342,41 @@
         </div>
       </el-tab-pane>
     </el-tabs>
+    <el-dialog
+      title="员工合同"
+      :visible.sync="dialogContractTableVisible">
+      <el-table
+        :data="contractTableData"
+        stripe>
+        <el-table-column
+          property="contractNum"
+          label="合同编号"/>
+        <el-table-column
+          property="contractType"
+          label="合同类型"/>
+        <el-table-column
+          property="startTime"
+          label="发起时间"/>
+        <el-table-column
+          property="signTime"
+          label="签约时间"/>
+        <el-table-column
+          property="signOrg"
+          label="签约组织"/>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              type="text"
+              @click="handleEdit(scope.$index, scope.row)">下载pdf</el-button>
+            <el-button
+              size="mini"
+              type="text"
+              @click="handleDelete(scope.$index, scope.row)">下载png</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-dialog>
   </div>
 </template>
 
@@ -354,7 +390,6 @@ export default {
     return {
       activeNameTab: 'firstTab',
       currentPage4: 4,
-      visible2: false,
       humanTopFormInline: {
         idcard: '',
         name: '',
@@ -364,7 +399,7 @@ export default {
         group: '',
         org: ''
       },
-      tableData5: [
+      humanTableData: [
         {
           date: '2018-12-19',
           idCard: '340323199712151721',
@@ -439,7 +474,31 @@ export default {
           managerField: '入职日期  籍贯  详细地址  开户银行',
           showSort: '10'
         }
-      ]
+      ],
+      contractTableData: [
+        {
+          contractNum: 'C000000211000001XE',
+          contractType: '瀛幸合同',
+          startTime: '2018-11-18 21:38',
+          signTime: '2018-11-18 21:38',
+          signOrg: '上海瀛幸信息科技有限公司'
+        },
+        {
+          contractNum: 'C000000211000001XE',
+          contractType: '瀛幸合同',
+          startTime: '2018-11-18 21:38',
+          signTime: '2018-11-18 21:38',
+          signOrg: '上海瀛幸信息科技有限公司'
+        },
+        {
+          contractNum: 'C000000211000001XE',
+          contractType: '瀛幸合同',
+          startTime: '2018-11-18 21:38',
+          signTime: '2018-11-18 21:38',
+          signOrg: '上海瀛幸信息科技有限公司'
+        }
+      ],
+      dialogContractTableVisible: false
     }
   },
   computed: {},
@@ -512,7 +571,9 @@ export default {
     background-color: #fff !important;
   }
   .el-tabs__item{
-    background-color: #FBFAF8 !important;
-
+    background-color: #f4f6fa !important;
+  }
+  .el-table th{
+    background-color: #f4f6fa !important;
   }
 </style>
