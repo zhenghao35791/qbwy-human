@@ -149,6 +149,7 @@
             </el-table-column>
             <el-table-column
               label="身份证号"
+              width="150"
               prop="idCard">
               <template slot-scope="scope">
                 <el-popover
@@ -159,7 +160,7 @@
                   <div
                     slot="reference"
                     class="name-wrapper">
-                    <el-tag size="medium">{{ scope.row.idCard }}</el-tag>
+                    <el-tag size="small">{{ scope.row.idCard }}</el-tag>
                   </div>
                 </el-popover>
               </template>
@@ -221,7 +222,9 @@
                 >合同</el-button>
                 <el-button
                   type="text"
-                  size="small">评语</el-button>
+                  size="small"
+                  @click="dialogCommentVisible = true"
+                >评语</el-button>
                 <el-button
                   type="text"
                   size="small">共享</el-button>
@@ -260,10 +263,10 @@
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page="currentPage4"
-                :page-sizes="[100, 200, 300, 400]"
-                :page-size="100"
+                :page-sizes="[10, 20, 30, 40]"
+                :page-size="10"
                 layout="total, sizes, prev, pager, next, jumper"
-                :total="400"/>
+                :total="40"/>
             </div>
           </div>
         </div>
@@ -377,6 +380,101 @@
         </el-table-column>
       </el-table>
     </el-dialog>
+    <el-dialog
+      title="员工评语"
+      :visible.sync="dialogCommentVisible">
+      <el-form
+        ref="form"
+        :model="rateForm"
+        label-width="80px"
+        size="small">
+        <el-form-item label="员工身份">
+          <el-input
+            v-model="rateForm.name"
+            disabled=""/>
+        </el-form-item>
+        <el-form-item label="职业能力">
+          <div class="rate-wrapper">
+            <el-rate
+              v-model="rateForm.abilityRate"
+              :allow-half="true"
+            />
+          </div>
+        </el-form-item>
+        <el-form-item label="职业意识">
+          <div class="rate-wrapper">
+            <el-rate
+              v-model="rateForm.awareRate"
+              :allow-half="true"
+            />
+          </div>
+        </el-form-item>
+        <el-form-item label="职业品德">
+          <div class="rate-wrapper">
+            <el-rate
+              v-model="rateForm.moralityRate"
+              :allow-half="true"
+            />
+          </div>
+        </el-form-item>
+        <el-form-item
+          label="员工评语"
+          required="">
+          <el-input v-model="rateForm.comment"/>
+        </el-form-item>
+        <el-form-item>
+          <el-button
+            type="primary"
+            @click="onSubmit">提交</el-button>
+        </el-form-item>
+      </el-form>
+      <el-table
+        :data="commentRateTableData"
+        stripe
+        style="width: 100%"
+        :default-sort = "{prop: 'index', order: 'descending'}"
+        @selection-change="handleSelectionChange">
+        <el-table-column
+          prop="careerRate1"
+          label="职业评级">
+          <template slot-scope="scope">
+            <p>
+              <span>能力：</span>
+              <el-rate
+                v-model="scope.row.careerRate1"
+                disabled/>
+            </p>
+            <p>
+              <span>意识：</span>
+              <el-rate
+                v-model="scope.row.careerRate2"
+                disabled/>
+            </p>
+            <p>
+              <span>品德：</span>
+              <el-rate
+                v-model="scope.row.careerRate3"
+                disabled/>
+            </p>
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="jobComment"
+          label="工作评语" />
+        <el-table-column
+          prop="commentTime"
+          label="评语时间" />
+        <el-table-column
+          label="操作">
+          <template slot-scope="scope">
+            <el-button
+              @click="handleClick(scope.row)"
+              type="text"
+              size="small">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-dialog>
   </div>
 </template>
 
@@ -389,7 +487,7 @@ export default {
   data () {
     return {
       activeNameTab: 'firstTab',
-      currentPage4: 4,
+      currentPage4: 1,
       humanTopFormInline: {
         idcard: '',
         name: '',
@@ -498,7 +596,38 @@ export default {
           signOrg: '上海瀛幸信息科技有限公司'
         }
       ],
-      dialogContractTableVisible: false
+      dialogContractTableVisible: false,
+      dialogCommentVisible: false,
+      rateForm: {
+        name: '530322199008272094 [郭高峰]',
+        abilityRate: '1.5',
+        awareRate: '5',
+        moralityRate: '3.5',
+        comment: ''
+      },
+      commentRateTableData: [
+        {
+          careerRate1: '1.5',
+          careerRate2: '2.5',
+          careerRate3: '3.5',
+          jobComment: '颠三倒四',
+          commentTime: '2018年'
+        },
+        {
+          careerRate1: '5',
+          careerRate2: '2.5',
+          careerRate3: '3',
+          jobComment: '阿打算法发顺丰',
+          commentTime: '2018年'
+        },
+        {
+          careerRate1: '5',
+          careerRate2: '4.5',
+          careerRate3: '1.5',
+          jobComment: '奥术大师大所大多撒所',
+          commentTime: '2018年'
+        }
+      ]
     }
   },
   computed: {},
@@ -564,6 +693,12 @@ export default {
       margin-right: 0;
       margin-bottom: 0;
       width: 50%;
+    }
+    .rate-wrapper {
+      display: table-cell;
+    }
+    .el-rate {
+      display: inline-block;
     }
   }
   .el-tabs--card>.el-tabs__header .el-tabs__item.is-active {
